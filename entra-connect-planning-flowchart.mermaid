@@ -1,0 +1,67 @@
+flowchart TD
+    A[Start: Planning Microsoft Entra Connect Deployment] --> B{Do you have existing on-premises Active Directory?}
+    
+    B -->|Yes| C[Assess Current AD Infrastructure]
+    B -->|No| D[Consider Cloud-Only Identity Model]
+    
+    C --> E{Multiple AD Forests/Domains?}
+    E -->|Yes| F[Plan Multi-Forest Topology]
+    E -->|No| G[Single Forest Configuration]
+    
+    F --> H[Document Forest Trust Relationships]
+    G --> I[Choose Authentication Method]
+    H --> I
+    
+    I --> J{What are your security requirements?}
+    J -->|High Security + Cloud Resilience| K[Password Hash Synchronization]
+    J -->|Policy Consistency Required| L[Pass-through Authentication]
+    J -->|Complex Authentication Needs| M[Federation with AD FS]
+    
+    K --> N[Plan Synchronization Scope]
+    L --> N
+    M --> N
+    
+    N --> O{Which objects should sync?}
+    O --> P[Select User OUs]
+    O --> Q[Select Group OUs]
+    O --> R[Exclude Service Accounts]
+    
+    P --> S[Plan Attribute Mapping]
+    Q --> S
+    R --> S
+    
+    S --> T{Custom attributes needed?}
+    T -->|Yes| U[Document Extension Attributes]
+    T -->|No| V[Review Default Attributes]
+    
+    U --> W[Plan Filtering Strategy]
+    V --> W
+    
+    W --> X{Need filtered synchronization?}
+    X -->|Yes| Y[Define OU-based Filtering]
+    X -->|No| Z[Full Directory Sync]
+    
+    Y --> AA[Plan Connector Deployment]
+    Z --> AA
+    
+    AA --> BB{High Availability Required?}
+    BB -->|Yes| CC[Deploy Multiple Connectors]
+    BB -->|No| DD[Single Connector Deployment]
+    
+    CC --> EE[Plan Connector Groups]
+    DD --> FF[Standard Installation]
+    EE --> FF
+    
+    FF --> GG[Document Configuration]
+    GG --> HH[Ready for Implementation]
+    
+    D --> II[Implement Cloud-Only Identity]
+    
+    style A fill:#e1f5fe
+    style HH fill:#c8e6c9
+    style II fill:#fff3e0
+    style J fill:#f3e5f5
+    style O fill:#f3e5f5
+    style T fill:#f3e5f5
+    style X fill:#f3e5f5
+    style BB fill:#f3e5f5
